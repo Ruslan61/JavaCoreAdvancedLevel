@@ -1,12 +1,12 @@
-package maraphon;
+package lesson1;
 
-import maraphon.competitors.Cat;
-import maraphon.competitors.Competitor;
-import maraphon.competitors.Human;
-import maraphon.competitors.Robot;
-import maraphon.obstacle.Cross;
-import maraphon.obstacle.Obstacle;
-import maraphon.obstacle.Wall;
+import lesson1.competitors.Cat;
+import lesson1.competitors.Competitor;
+import lesson1.competitors.Human;
+import lesson1.competitors.Robot;
+import lesson1.obstacle.Cross;
+import lesson1.obstacle.Obstacle;
+import lesson1.obstacle.Wall;
 
 public class Main {
     public static void main(String[] args) {
