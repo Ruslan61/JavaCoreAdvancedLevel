@@ -14,13 +14,13 @@ public class Main {
                 new Human("Vasia", 1200, 5),
                 new Human("Petia", 600, 3),
                 new Cat("Murzik", 800, 6),
-                new Cat("Barsik", 900, 7),
+                new Cat("Barsik", 1100, 3),
                 new Robot("BostonDynamics", 3000, 12),
                 new Robot("Android-C137", 500, 6)
         };
         Obstacle[] obstacles ={
-                new Wall(5),
-                new Cross(750)
+                new Wall(4),
+                new Cross(1000)
         };
         for (Competitor c:competitors) {
             for (Obstacle o:obstacles) {
