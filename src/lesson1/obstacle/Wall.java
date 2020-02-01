@@ -1,6 +1,6 @@
-package maraphon.obstacle;
+package lesson1.obstacle;
 
-import maraphon.competitors.Competitor;
+import lesson1.competitors.Competitor;
 
 public class Wall extends Obstacle {
     private int height;

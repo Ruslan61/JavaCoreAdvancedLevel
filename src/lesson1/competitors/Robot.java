@@ -1,6 +1,6 @@
-package maraphon.competitors;
+package lesson1.competitors;
 
-public class Cat implements Competitor {
+public class Robot implements Competitor {
     String name;
 
     int maxRunDistance;
@@ -8,7 +8,7 @@ public class Cat implements Competitor {
 
     boolean active;
 
-    public Cat (String name, int maxRunDistance, int maxJumpHeight) {
+    public Robot (String name, int maxRunDistance, int maxJumpHeight) {
         this.name = name;
         this.maxRunDistance = maxRunDistance;
         this.maxJumpHeight = maxJumpHeight;

@@ -1,7 +1,7 @@
-package maraphon.obstacle;
+package lesson1.obstacle;
 
 
-import maraphon.competitors.Competitor;
+import lesson1.competitors.Competitor;
 
 public abstract class Obstacle {
     public abstract void doIt(Competitor competitor);

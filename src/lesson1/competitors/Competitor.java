@@ -1,4 +1,4 @@
-package maraphon.competitors;
+package lesson1.competitors;
 
 public interface Competitor {
     void run(int dist);

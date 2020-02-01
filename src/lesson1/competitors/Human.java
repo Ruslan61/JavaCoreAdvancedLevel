@@ -1,4 +1,4 @@
-package maraphon.competitors;
+package lesson1.competitors;
 
 public class Human implements Competitor {
     String name;
