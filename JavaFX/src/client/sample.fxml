@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.HBox?>
-<VBox fx:controller="lesson4.Controller"
+<VBox fx:controller="client.Controller"
       xmlns:fx="http://javafx.com/fxml" alignment="center">
-    <TextArea fx:id="chatText" editable="false" VBox.vgrow="ALWAYS"/>
+    <TextArea fx:id="textArea" editable="false" VBox.vgrow="ALWAYS"/>
     <HBox>
-        <TextField fx:id="inputText" HBox.hgrow="ALWAYS" onAction="#sendMessage"/>
+        <TextField fx:id="textField" HBox.hgrow="ALWAYS" onAction="#sendMessage"/>
         <Button text="Отправить" onAction="#sendMessage"/>
     </HBox>
 
