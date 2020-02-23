@@ -15,12 +15,14 @@ public class Client {
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
             Scanner sc = new Scanner(System.in);
 
-            new Thread(() -> {
+            Thread inMessageThread = new Thread(() -> {
                 while (true) {
                     String msg = in.nextLine();
                     System.out.println("Сервер: " + msg);
                 }
-            }).start();
+            });
+            inMessageThread.setDaemon(true);
+            inMessageThread.start();
 
             while (true) {
                 String msg = sc.nextLine();
