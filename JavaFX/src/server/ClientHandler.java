@@ -13,6 +13,10 @@ public class ClientHandler {
     private String nick;
     private String login;
 
+    public String getNick(){
+        return nick;
+    }
+
     public ClientHandler(Socket socket, Server server) {
         try {
             this.socket = socket;
@@ -46,11 +50,18 @@ public class ClientHandler {
                     //цикл работы
                     while (true) {
                         String str = in.readUTF();
-                        if (str.equals("/end")) {
-                            out.writeUTF("/end");
-                            break;
+                        if (str.startsWith("/")) {
+                            if (str.equals("/end")) {
+                                out.writeUTF("/end");
+                                break;
+                            }
+                            if (str.startsWith("/w ")) {
+                                String[] tokens = str.split(" ", 3);
+                                server.personalMsg(ClientHandler.this, tokens[1], tokens[2]);
+                            }
+                        }else {
+                            server.broadcastMsg(str);
                         }
-                        server.broadcastMsg(str);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();

@@ -40,8 +40,18 @@ public class Server {
         }
     }
 
+    public void personalMsg(ClientHandler from, String nickTo, String msg) {
+        for (ClientHandler o : clients) {
+            if (o.getNick().equals(nickTo)) {
+                o.sendMsg("Приватное сообщение от " + from.getNick() + " : " + msg);
+                from.sendMsg(nickTo + " отправлено приватное сообщение : " + msg);
+                return;
+            }
+        }
+    }
+
     public void broadcastMsg(String msg) {
-        for (ClientHandler c: clients) {
+        for (ClientHandler c : clients) {
             c.sendMsg(msg);
         }
     }
