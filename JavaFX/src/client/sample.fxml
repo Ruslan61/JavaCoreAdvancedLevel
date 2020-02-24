@@ -6,10 +6,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.PasswordField?>
 <VBox fx:controller="client.Controller"
       xmlns:fx="http://javafx.com/fxml" alignment="center">
+
+    <HBox fx:id="authPanel" managed="true">
+        <TextField fx:id="loginField" HBox.hgrow="ALWAYS" promptText="Login"/>
+        <PasswordField fx:id="passwordField" HBox.hgrow="ALWAYS" promptText="Password" onAction="#tryToAuth"/>
+        <Button text="Войти" onAction="#tryToAuth"/>
+    </HBox>
+
     <TextArea fx:id="textArea" editable="false" VBox.vgrow="ALWAYS"/>
-    <HBox>
+
+    <HBox fx:id="msgPanel" visible="false" managed="false">
         <TextField fx:id="textField" HBox.hgrow="ALWAYS" onAction="#sendMessage"/>
         <Button text="Отправить" onAction="#sendMessage"/>
     </HBox>
