@@ -2,7 +2,6 @@ package server;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 
 public class SimpleAuthService implements AuthService {
 
@@ -22,7 +21,7 @@ public class SimpleAuthService implements AuthService {
 
     public SimpleAuthService() {
         users = new ArrayList<>();
-        for (int i = 1; i < 10; i++) {
+        for (int i = 1; i <= 10; i++) {
             users.add(new UserData("login" + i, "pass" + i, "nick" + i));
         }
     }
@@ -35,5 +34,21 @@ public class SimpleAuthService implements AuthService {
             }
         }
         return null;
+    }
+
+    @Override
+    public boolean registration(String login, String password, String nickname) {
+        for (UserData o : users) {
+            if (o.login.equals(login)) {
+                return false;
+            }
+        }
+
+        if (password.trim().equals("")) {
+            return false;
+        }
+
+        users.add(new UserData(login, password, nickname));
+        return true;
     }
 }
