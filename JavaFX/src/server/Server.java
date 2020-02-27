@@ -7,9 +7,15 @@ import java.util.Vector;
 
 public class Server {
     private Vector<ClientHandler> clients;
+    private AuthService authService;
+
+    public AuthService getAuthService() {
+        return authService;
+    }
 
     public Server() {
         clients = new Vector<>();
+        authService = new SimpleAuthService();
         ServerSocket server = null;
         Socket socket = null;
 
@@ -20,7 +26,7 @@ public class Server {
             while (true) {
                 socket = server.accept();
                 System.out.println("Клиент подключился");
-                clients.add(new ClientHandler(socket, this));
+                new ClientHandler(socket, this);
             }
 
         } catch (IOException e) {
@@ -34,9 +40,27 @@ public class Server {
         }
     }
 
+    public void personalMsg(ClientHandler from, String nickTo, String msg) {
+        for (ClientHandler o : clients) {
+            if (o.getNick().equals(nickTo)) {
+                o.sendMsg("Приватное сообщение от " + from.getNick() + " : " + msg);
+                from.sendMsg(nickTo + " отправлено приватное сообщение : " + msg);
+                return;
+            }
+        }
+    }
+
     public void broadcastMsg(String msg) {
-        for (ClientHandler c: clients) {
+        for (ClientHandler c : clients) {
             c.sendMsg(msg);
         }
+    }
+
+    public void subscribe(ClientHandler clientHandler) {
+        clients.add(clientHandler);
+    }
+
+    public void unsubscribe(ClientHandler clientHandler) {
+        clients.remove(clientHandler);
     }
 }
