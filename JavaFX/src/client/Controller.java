@@ -20,6 +20,7 @@ import javafx.stage.WindowEvent;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.EOFException;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.SocketException;
@@ -136,6 +137,8 @@ public class Controller implements Initializable {
                             textArea.appendText(str + "\n");
                         }
                     }
+                } catch (EOFException e) {
+                    System.out.println("Закончилось время для входа");
                 } catch (SocketException e) {
                     System.out.println("Сервер отключился");
                     setAuthenticated(false);
@@ -219,8 +222,8 @@ public class Controller implements Initializable {
         return stage;
     }
 
-    public void tryRegistr(String login, String password, String nickname){
-        String msg = String.format("/reg %s %s %s",login, password, nickname );
+    public void tryRegistr(String login, String password, String nickname) {
+        String msg = String.format("/reg %s %s %s", login, password, nickname);
 
         if (socket == null || socket.isClosed()) {
             connect();

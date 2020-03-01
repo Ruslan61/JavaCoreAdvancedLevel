@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 
 public class ClientHandler {
     Socket socket = null;
@@ -22,7 +23,9 @@ public class ClientHandler {
 
             new Thread(() -> {
                 try {
-//                    socket.setSoTimeout(0);
+                    //таймер для входа
+                    socket.setSoTimeout(120000);
+
                     //цикл аутентификации
                     while (true) {
                         String str = in.readUTF();
@@ -56,6 +59,9 @@ public class ClientHandler {
                                     nick = newNick;
                                     server.subscribe(this);
                                     System.out.println("Клиент " + nick + " подключился");
+
+                                    //остановка таймера входа
+                                    socket.setSoTimeout(0);
                                     break;
                                 } else {
                                     sendMsg("С этим логином уже авторизовались");
@@ -87,8 +93,8 @@ public class ClientHandler {
 
 
                     }
-                } catch (RuntimeException e) {
-                    System.out.println("сами вызвали исключение.");
+                } catch (SocketTimeoutException e) {
+                    System.out.println("Закончилось время для входа");
                 } catch (IOException e) {
                     e.printStackTrace();
                 } finally {
